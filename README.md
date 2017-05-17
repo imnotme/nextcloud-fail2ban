@@ -1,32 +1,12 @@
-# NOTE: The guide is "archived"
+# NOTE:
 
-Nextcloud now natively supports bruteforce protection, please see:
+Even if Nextcloud now natively supports bruteforce protection :
 
 https://docs.nextcloud.com/server/12/admin_manual/configuration_server/config_sample_php_parameters.html?highlight=bruteforce
 
-This guide is archived here for those using older versions of Nextcloud, or are in conditions where there are forced to use Fail2Ban.
-
-
-# nextcloud-fail2ban
-
-WIP
-
-Examples are also located in this repositories `config-examples` directory.
-
-
-
-## Nextcloud
-
-Add the following to Nextcloud's config file:
-
-### config/config.php
-```
-'logtimezone' => 'TIMEZONEHERE',
-'log_type' => 'owncloud',
-'logfile' => 'nextcloud.log',
-```
-
-See a complete list of [valid PHP timezones](http://php.net/manual/en/timezones.php).
+I prefer using network-level filtering instead of PHP-level filtering :
+ * Less load on the webserver
+ * More secure (block network access, packet will never reach application level)
 
 ## Fail2ban
 
@@ -49,14 +29,13 @@ failregex = Login failed.*Remote IP.*'<HOST>'
 ignoreregex =
 ```
 
-### jail.local
+### jail.d/nextcloud.conf
 
-Add the following text to your jail.local file. Note: do not edit your jail.conf
-file as changes may be discarded on updates instead, copy jail.conf to
-jail.local and make edits there.
+Add the following text to your jail.d/nexcloud.conf file. Note: do not edit your jail.conf
+file as changes may be discarded on updates.
 
 ```
-[owncloud]
+[nextcloud]
 
 enabled  = true
 port     = http,https
