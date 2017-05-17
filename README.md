@@ -2,7 +2,8 @@
 
 Even if Nextcloud now natively supports bruteforce protection :
 
-https://docs.nextcloud.com/server/12/admin_manual/configuration_server/config_sample_php_parameters.html?highlight=bruteforce
+* https://docs.nextcloud.com/server/12/admin_manual/configuration_server/config_sample_php_parameters.html?highlight=bruteforce
+* https://github.com/nextcloud/server/blob/master/lib/private/Security/Bruteforce/Throttler.php
 
 I prefer using network-level filtering instead of PHP-level filtering :
  * Less load on the webserver
